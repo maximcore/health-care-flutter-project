@@ -8,8 +8,8 @@ import 'package:health_and_care/ui/food_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:health_and_care/activity_data/activity_list.dart';
-import 'file:///C:/Users/maxim/AndroidStudioProjects/health_and_care/lib/activity_data/activity.dart';
+import 'package:health_and_care/screens_data/activity_data/activity_list.dart';
+import 'package:health_and_care/screens_data/activity_data/activity.dart';
 
 
 class ActivityPage extends StatefulWidget {
@@ -52,6 +52,7 @@ class ActivityPageState extends State<ActivityPage> {
 
   getData() async {
     setState(() {
+
     });
   }
 
@@ -97,7 +98,7 @@ class ActivityPageState extends State<ActivityPage> {
 
   @override
   Widget build(BuildContext context) {
-    ActivityNotifier activityNotifier = Provider.of<ActivityNotifier>(context);
+    //ActivityNotifier activityNotifier = Provider.of<ActivityNotifier>(context);
 
 
 
@@ -114,8 +115,6 @@ class ActivityPageState extends State<ActivityPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-
-                  //_buildActivity(),
                   _buildDuration(),
                   SizedBox(height: 10),
                   new DropdownButton<String>(
@@ -151,16 +150,9 @@ class ActivityPageState extends State<ActivityPage> {
 
                       else {
                         _formKey.currentState.save();
-
-
                         setState(() {
-                          Activity newActivity = Activity(_activity,_duration);
+                          Activity newActivity = Activity('${new DateTime.now()}',_activity,_duration);
                           ActivityList.addActivity(newActivity);
-                         // activityNotifier.addActivityItem(Activity(_activity, _duration));
-
-                          //_activityItems.add((Activity(_activity, _duration)));
-
-                         // ActivityDatabaseProvider().saveActivity((Activity(_activity, _duration)));
                         });
                       }
                       //ActivityDatabaseProvider().
@@ -170,7 +162,7 @@ class ActivityPageState extends State<ActivityPage> {
                   SizedBox(height: 60),
                   RaisedButton(
                     child: Text(
-                      'View your activity list',
+                      'View your activity this week',
                       style: TextStyle(color: Colors.blue, fontSize: 16),
                     ),
                     onPressed: () => Navigator.push(

@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 import 'package:health_and_care/ui/activity_screen.dart';
-import 'file:///C:/Users/maxim/AndroidStudioProjects/health_and_care/lib/activity_data/activity.dart';
+import 'file:///C:/Users/maxim/AndroidStudioProjects/health_and_care/lib/screens_data/activity_data/activity.dart';
 import 'package:health_and_care/ui/activity_screen.dart';
 
 class ActivityNotifier with ChangeNotifier{

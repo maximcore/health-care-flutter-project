@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:health_and_care/ui/activity_screen.dart';
-import 'package:health_and_care/ui/weight_screen.dart';
+import 'package:health_and_care/ui/dog_screen.dart';
 import 'package:health_and_care/ui/food_screen.dart';
 import 'package:health_and_care/ui/sleep_screen.dart';
-
 
 class TabNavigationItem {
   final Widget page;
@@ -15,9 +14,9 @@ class TabNavigationItem {
 
   static List<TabNavigationItem> get items => [
     TabNavigationItem(
-      page: FoodPage(),
-      icon: Icon(Icons.fastfood_rounded),
-      title: Text('Food'),
+        page: ActivityPage(),
+        icon: Icon(Icons.directions_run),
+        title: Text('Activity')
     ),
     TabNavigationItem(
         page: SleepPage(),
@@ -25,15 +24,16 @@ class TabNavigationItem {
         title: Text('Sleep')
     ),
     TabNavigationItem(
-        page: ActivityPage(),
-        icon: Icon(Icons.directions_run),
-        title: Text('Activity')
+        page: DogPage(),
+        icon: Icon(IconData(0xe90e, fontFamily: 'MaterialIcons')),
+        title: Text('Dogs')
     ),
     TabNavigationItem(
-        page: WeightPage(),
-        icon: Icon(Icons.airplay),
-        title: Text('Weight')
+      page: FoodPage(),
+      icon: Icon(Icons.fastfood_rounded),
+      title: Text('Food'),
     ),
+
   ];
 
 }

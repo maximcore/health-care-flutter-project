@@ -2,20 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:health_and_care/notifiers/activity_notifier.dart';
 import 'package:health_and_care/ui/activity_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:health_and_care/activity_data/activity_list.dart';
-import 'file:///C:/Users/maxim/AndroidStudioProjects/health_and_care/lib/activity_data/activity.dart';
+import 'package:health_and_care/screens_data/activity_data/activity_list.dart';
+import 'file:///C:/Users/maxim/AndroidStudioProjects/health_and_care/lib/screens_data/activity_data/activity.dart';
 
 
-class ActivityListPage extends StatelessWidget {
+class ActivityListPage extends StatefulWidget {
+  @override
+  ActivityListPageState createState() => ActivityListPageState();
+}
+
+class ActivityListPageState extends State<ActivityListPage> {
   @override
   Widget build(BuildContext context) {
-    //ActivityNotifier activityNotifier = Provider.of<ActivityNotifier>(context);
-
-
-
-    print('List page rebuilt');
-
-
     return Scaffold(
         appBar: AppBar(
           title: Text('Activity List'),
@@ -27,7 +25,7 @@ class ActivityListPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Text(
-                'Your Activity Today  ' /*+ (activityNotifier.activityItems.length).toString()*/,
+                'Your Activity This Week  ' /*+ (activityNotifier.activityItems.length).toString()*/,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
@@ -50,11 +48,23 @@ class ActivityListPage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '${ActivityPageState.activityItems[index].calories} cal',
+                            '${ActivityPageState.activityItems[index].calories} cal  ${ActivityPageState.activityItems[index].id}',
                             style: TextStyle(
                               fontSize: 12,
                             ),
-                          )
+                          ),
+                          MaterialButton(
+                            color: Colors.redAccent,
+                            height: 25,
+                            child: Text('Remove activity'),
+                            onPressed: (){
+                              setState(() {
+                                //ActivityPageState.activityItems.removeAt(index);
+                                ActivityList.remove(ActivityList.activityList[index]);
+                              });
+                              print(ActivityList.activityList);
+                            },
+                          ),
                         ],
                       ),
                     ),

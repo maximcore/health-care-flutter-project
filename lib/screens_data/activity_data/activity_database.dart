@@ -1,7 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/maxim/AndroidStudioProjects/health_and_care/lib/activity_data/activity.dart';
-import 'package:health_and_care/activity_data/activity_list.dart';
+import 'package:health_and_care/screens_data/activity_data/activity.dart';
+import 'package:health_and_care/screens_data/activity_data/activity_list.dart';
 
 class DatabaseManager {
   static Database _db;
@@ -19,20 +19,25 @@ class DatabaseManager {
     _db = await openDatabase(path, version: 1, onOpen: (db) {
     }, onCreate: (Database db, int version) async {
       await db.execute("""CREATE TABLE IF NOT EXISTS activity (
-          id INT AUTO_INCREMENT PRIMARY KEY,
-          activity STRING,
-          duration STRING,
-          calories STRING
+          ${columnId} STRING PRIMARY KEY,
+          ${columnActivity} STRING,
+          ${columnDuration} STRING,
+          ${columnCalories} STRING
           )""");
     });
   }
 
   static void insert(Activity activity) {
-    print(ActivityList.size);
-    // _db.insert('Deals', note.toJson());
-    _db.execute("""INSERT INTO activity (activity, duration, calories) VALUES (
-        \"${activity.activity}\", \"${activity.duration}\",
-        \"${activity.calories}\")""");
+    _db.execute("""INSERT INTO activity (${columnId}, ${columnActivity}, ${columnDuration}, ${columnCalories}) VALUES (
+        \"${activity.id}\", \"${activity.activity}\", 
+        \"${activity.duration}\", \"${activity.calories}\")""");
+  }
+
+  static void remove(String id) {
+    _db.delete('activity',
+      where: '$columnId = ?',
+      whereArgs: ['${id}'],
+    );
   }
 
   static Future<List<Activity>> downloadAll() async {

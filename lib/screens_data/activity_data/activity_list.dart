@@ -1,10 +1,15 @@
-import 'file:///C:/Users/maxim/AndroidStudioProjects/health_and_care/lib/activity_data/activity.dart';
+import 'package:health_and_care/screens_data/activity_data/activity.dart';
 
 import 'package:flutter/material.dart';
-import 'package:health_and_care/activity_data/activity_database.dart';
+import 'package:health_and_care/screens_data/activity_data/activity_database.dart';
 
 class ActivityList{
  static List<Activity> _activityList = new List();
+
+ static Future<void> remove(Activity activity){
+   DatabaseManager.remove(activity.id);
+   _activityList.remove(activity);
+ }
 
  static Future<void> initList() async {
    await updateList();

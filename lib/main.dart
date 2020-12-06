@@ -2,14 +2,12 @@ import 'dart:async';
 import 'package:health_and_care/pages/tab_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:health_and_care/sleep_data/sleep_database.dart';
-import 'package:openfoodfacts/openfoodfacts.dart';
 import 'package:provider/provider.dart';
 import 'notifiers/activity_notifier.dart';
-import 'activity_data/activity_database.dart';
-import 'package:health_and_care/activity_data/activity_list.dart';
-import 'sleep_data/sleep_database.dart';
-import 'sleep_data/sleep_list.dart';
+import 'screens_data/activity_data/activity_database.dart';
+import 'screens_data/activity_data/activity_list.dart';
+import 'screens_data/sleep_data/sleep_database.dart';
+import 'screens_data/sleep_data/sleep_list.dart';
 
 
 void main() async {
