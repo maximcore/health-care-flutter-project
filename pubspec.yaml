@@ -28,6 +28,7 @@ dependencies:
   path:
   openfoodfacts: ^0.3.13 #no idention
   path_provider: ^1.6.24
+  test: ^1.15.7
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -40,8 +41,7 @@ dependencies:
   provider: ^3.1.0
 
 dev_dependencies:
-
-flutter_test:
+  flutter_test:
     sdk: flutter
 
 

@@ -67,7 +67,7 @@ class DogPageState extends State<DogPage> {
                   ,
                   MaterialButton(
                     color: Colors.lightBlueAccent[100],
-                    child: Text('Click to see cute dogs'),
+                    child: Text('Click to see cute dogs 🐶'),
                     onPressed: () {
                       getData();
                       Navigator.push(context,

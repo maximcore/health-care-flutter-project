@@ -11,7 +11,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:health_and_care/screens_data/activity_data/activity_list.dart';
 import 'package:health_and_care/screens_data/activity_data/activity.dart';
 
-
 class ActivityPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -19,14 +18,12 @@ class ActivityPage extends StatefulWidget {
   }
 }
 
-
 class ActivityPageState extends State<ActivityPage> {
   static Route<dynamic> route() => MaterialPageRoute(
         builder: (context) => ActivityPage(),
       );
 
-
-   static ActivityList activityItems = ActivityList();
+  static ActivityList activityItems = ActivityList();
 
   List<String> activityList = [
     'Walking',
@@ -41,19 +38,14 @@ class ActivityPageState extends State<ActivityPage> {
   String _duration;
   String _calories;
 
-
   @override
   void initState() {
     super.initState();
     getData();
   }
 
-
-
   getData() async {
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -77,6 +69,7 @@ class ActivityPageState extends State<ActivityPage> {
 
   Widget _buildDuration() {
     return TextFormField(
+      key: Key('Enter duration'),
       decoration: InputDecoration(
         hintText: 'Enter duration in minutes',
         labelText: 'Duration',
@@ -91,7 +84,7 @@ class ActivityPageState extends State<ActivityPage> {
         return null;
       },
       onSaved: (String value) {
-        _duration = value;
+          _duration = value;
       },
     );
   }
@@ -99,8 +92,6 @@ class ActivityPageState extends State<ActivityPage> {
   @override
   Widget build(BuildContext context) {
     //ActivityNotifier activityNotifier = Provider.of<ActivityNotifier>(context);
-
-
 
     return Scaffold(
         appBar: AppBar(
@@ -118,11 +109,13 @@ class ActivityPageState extends State<ActivityPage> {
                   _buildDuration(),
                   SizedBox(height: 10),
                   new DropdownButton<String>(
-                    items: <String> ['Walking',
+                    items: <String>[
+                      'Walking',
                       'Running',
                       'Dance',
                       'Football',
-                      'Gym'].map((String value) {
+                      'Gym'
+                    ].map((String value) {
                       return new DropdownMenuItem<String>(
                         value: value,
                         child: new Text(value),
@@ -133,7 +126,8 @@ class ActivityPageState extends State<ActivityPage> {
                         _currentItemSelected = newValueSelected;
                         _activity = _currentItemSelected;
                       });
-                      onSaved: (String value) {
+                      onSaved:
+                      (String value) {
                         _activity = value;
                       };
                     },
@@ -141,22 +135,24 @@ class ActivityPageState extends State<ActivityPage> {
                   ),
                   SizedBox(height: 20),
                   RaisedButton(
+                    key: Key('Add Activity'),
                     child: Text(
                       'Add Activity',
                       style: TextStyle(color: Colors.purple, fontSize: 16),
                     ),
-                    onPressed: ()  {
-                      if (!_formKey.currentState.validate()) return;
-
+                    onPressed: () {
+                      if (!_formKey.currentState.validate())
+                        return;
                       else {
                         _formKey.currentState.save();
+
                         setState(() {
-                          Activity newActivity = Activity('${new DateTime.now()}',_activity,_duration);
+                          Activity newActivity = Activity(
+                              '${new DateTime.now()}', _activity, _duration);
                           ActivityList.addActivity(newActivity);
                         });
                       }
                       //ActivityDatabaseProvider().
-
                     },
                   ),
                   SizedBox(height: 60),
@@ -176,5 +172,3 @@ class ActivityPageState extends State<ActivityPage> {
             )));
   }
 }
-
-

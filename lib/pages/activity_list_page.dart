@@ -48,7 +48,7 @@ class ActivityListPageState extends State<ActivityListPage> {
                             ),
                           ),
                           Text(
-                            '${ActivityPageState.activityItems[index].calories} cal  ${ActivityPageState.activityItems[index].id}',
+                            '${ActivityPageState.activityItems[index].calories} cal',
                             style: TextStyle(
                               fontSize: 12,
                             ),
