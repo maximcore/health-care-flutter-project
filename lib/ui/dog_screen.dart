@@ -1,8 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'file:///C:/Users/maxim/AndroidStudioProjects/health_and_care/lib/dog_screens/dog_list.dart';
+import 'file:///C:/Users/maxim/AndroidStudioProjects/health_and_care/lib/bloc/dog_block/dog_bloc.dart';
+import 'package:health_and_care/screens_data/dog_data/dog_list.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -18,17 +18,28 @@ class DogPage extends StatefulWidget {
 }
 
 class DogPageState extends State<DogPage> {
+  DogBloc _bloc = DogBloc();
+
+  @override
+  void dispose() {
+    _bloc.dispose();
+  }
+
   static List dog_link;
+
+  int dog_amount = 1;
 
   Map<String, dynamic> map;
 
-  Future<String> getData() async {
+  Future<void> getData() async {
     var response = await http.get(
-        Uri.encodeFull("https://dog.ceo/api/breeds/image/random/10"),
+        Uri.encodeFull("https://dog.ceo/api/breeds/image/random/${dog_amount}"),
         headers: {"Accept": "application/json"});
-    map = json.decode(response.body);
-    dog_link = map["message"];
+        map = json.decode(response.body);
+        dog_link = map["message"];
   }
+
+
 
   @override
   void initState() {
@@ -40,7 +51,7 @@ class DogPageState extends State<DogPage> {
   Widget build(BuildContext context) {
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-    return Scaffold(
+    return  Scaffold(
         appBar: AppBar(
           title: Text("Dogs"),
           backgroundColor: Colors.deepPurpleAccent,
@@ -63,17 +74,67 @@ class DogPageState extends State<DogPage> {
                       scrollDirection: Axis.vertical,
                       child: Text(text_about_dogs),
                     ),
-                  )
-                  ,
-                  MaterialButton(
-                    color: Colors.lightBlueAccent[100],
-                    child: Text('Click to see cute dogs 🐶'),
-                    onPressed: () {
-                      getData();
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Dogs()));
-                    },
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      StreamBuilder(
+                        stream: _bloc.outputStateStream,
+                        initialData: 1,
+                        builder: (context, snapshot){
+                          dog_amount = snapshot.data;
+                          getData();
+                          return Container(
+                            child: Column(
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    MaterialButton(
+                                      color: Colors.lightBlueAccent[100],
+                                      child: Text('Click to see ${snapshot.data} cute dogs 🐶'),
+                                      onPressed: () {
+                                        //getData();
+                                        Navigator.push(context,
+                                            MaterialPageRoute(builder: (context) => Dogs()));
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    FloatingActionButton(
+                                      heroTag: "btn1",
+                                      backgroundColor: Colors.lightGreenAccent,
+                                      child: Icon(Icons.add),
+                                      onPressed: (){
+                                        _bloc.inputEventSink.add(IncrementEvent());
+                                      },
+                                    ),
+                                    SizedBox(
+                                      width: 16,
+                                    ),
+                                    FloatingActionButton(
+                                      heroTag: "btn2",
+                                      backgroundColor: Colors.redAccent,
+                                      child: Icon(Icons.remove),
+                                      onPressed: (){
+                                        _bloc.inputEventSink.add(DecrementEvent());
+                                      },
+                                    )
+                                  ],
+                                )
+
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),

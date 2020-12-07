@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:health_and_care/screens_data/food_data/FoodInfo.dart';
-import 'package:health_and_care/food_screens/breakfast.dart';
-import 'package:health_and_care/food_screens/dinner.dart';
-import 'package:health_and_care/food_screens/lunch.dart';
-import 'package:health_and_care/food_screens/snack.dart';
+import 'package:health_and_care/screens_data/food_data/food_screens/breakfast.dart';
+import 'package:health_and_care/screens_data/food_data/food_screens/dinner.dart';
+import 'package:health_and_care/screens_data/food_data/food_screens/lunch.dart';
+import 'package:health_and_care/screens_data/food_data/food_screens/snack.dart';
 
 import 'package:health_and_care/screens_data/food_data/food_data.dart';
 

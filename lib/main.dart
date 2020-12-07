@@ -1,9 +1,8 @@
 import 'dart:async';
-import 'package:health_and_care/pages/tab_page.dart';
+import 'package:health_and_care/navigation/tab_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'notifiers/activity_notifier.dart';
 import 'screens_data/activity_data/activity_database.dart';
 import 'screens_data/activity_data/activity_list.dart';
 import 'screens_data/sleep_data/sleep_database.dart';
@@ -19,7 +18,9 @@ void main() async {
   await DatabaseManager.initDB();
   await ActivityList.initList();
 
-  runApp(
+  runApp(MyApp());
+
+  /*runApp(
       MultiProvider(providers: [
         ChangeNotifierProvider(
           builder: (context) => ActivityNotifier(),
@@ -27,7 +28,7 @@ void main() async {
       ],
           child: MyApp()
       )
-  );
+  );*/
 }
 
 class MyApp extends StatelessWidget {
