@@ -83,7 +83,7 @@ class ActivityPageState extends State<ActivityPage> {
         return null;
       },
       onSaved: (String value) {
-          _duration = value;
+        _duration = value;
       },
     );
   }
@@ -99,75 +99,79 @@ class ActivityPageState extends State<ActivityPage> {
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-            padding: EdgeInsets.all(24),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  _buildDuration(),
-                  SizedBox(height: 10),
-                  new DropdownButton<String>(
-                    items: <String>[
-                      'Walking',
-                      'Running',
-                      'Dance',
-                      'Football',
-                      'Gym'
-                    ].map((String value) {
-                      return new DropdownMenuItem<String>(
-                        value: value,
-                        child: new Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (String newValueSelected) {
-                      setState(() {
-                        _currentItemSelected = newValueSelected;
-                        _activity = _currentItemSelected;
-                      });
-                      onSaved:
-                      (String value) {
-                        _activity = value;
-                      };
-                    },
-                    value: _currentItemSelected,
-                  ),
-                  SizedBox(height: 20),
-                  RaisedButton(
-                    key: Key('Add Activity'),
-                    child: Text(
-                      'Add Activity',
-                      style: TextStyle(color: Colors.purple, fontSize: 16),
-                    ),
-                    onPressed: () {
-                      if (!_formKey.currentState.validate())
-                        return;
-                      else {
-                        _formKey.currentState.save();
-
+          padding: EdgeInsets.all(24),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Column(
+                  children: [
+                    _buildDuration(),
+                    SizedBox(height: 10),
+                    new DropdownButton<String>(
+                      items: <String>[
+                        'Walking',
+                        'Running',
+                        'Dance',
+                        'Football',
+                        'Gym'
+                      ].map((String value) {
+                        return new DropdownMenuItem<String>(
+                          value: value,
+                          child: new Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (String newValueSelected) {
                         setState(() {
-                          Activity newActivity = Activity(
-                              '${new DateTime.now()}', _activity, _duration);
-                          ActivityList.addActivity(newActivity);
+                          _currentItemSelected = newValueSelected;
+                          _activity = _currentItemSelected;
                         });
-                      }
-                      //ActivityDatabaseProvider().
-                    },
-                  ),
-                  SizedBox(height: 60),
-                  RaisedButton(
-                    child: Text(
-                      'View your activity this week',
-                      style: TextStyle(color: Colors.blue, fontSize: 16),
+                        onSaved:
+                        (String value) {
+                          _activity = value;
+                        };
+                      },
+                      value: _currentItemSelected,
                     ),
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ActivityListPage()),
-                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                RaisedButton(
+                  key: Key('Add Activity'),
+                  child: Text(
+                    'Add Activity',
+                    style: TextStyle(color: Colors.deepPurpleAccent, fontSize: 16),
                   ),
-                ],
-              ),
-            )));
+                  onPressed: () {
+                    if (!_formKey.currentState.validate())
+                      return;
+                    else {
+                      _formKey.currentState.save();
+
+                      setState(() {
+                        Activity newActivity = Activity(
+                            '${new DateTime.now()}', _activity, _duration);
+                        ActivityList.addActivity(newActivity);
+                      });
+                    }
+                    //ActivityDatabaseProvider().
+                  },
+                ),
+                SizedBox(height: 60),
+                RaisedButton(
+                  child: Text(
+                    'View your activity this week',
+                    style: TextStyle(color: Colors.deepPurpleAccent, fontSize: 16),
+                  ),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ActivityListPage()),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
   }
 }
