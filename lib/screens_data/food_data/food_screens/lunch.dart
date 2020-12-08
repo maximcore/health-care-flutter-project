@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:health_and_care/screens_data/food_data/FoodInfo.dart';
+import 'package:health_and_care/screens_data/food_data/food_info.dart';
+
+import 'add_food.dart';
 
 
 class Lunch extends StatefulWidget {
@@ -18,7 +20,7 @@ class LunchState extends State<Lunch> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Add Lunch'),
+          title: Text('Choose food'),
           backgroundColor: Colors.deepPurpleAccent,
           centerTitle: true,
         ),
@@ -34,18 +36,28 @@ class LunchState extends State<Lunch> {
                       padding: EdgeInsets.all(16),
                       child: Column(
                         children: <Widget>[
-                          Text(
-                            '${FoodInfo.dishes[index].name}',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
+                          MaterialButton(
+                              child: Column(children: <Widget>[
+                                Text(
+                                  '${FoodInfo.dishes[index].name}',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                Text(
+                                  '''${(FoodInfo.dishes[index].cal).toString().substring(0, 3)} calories ${FoodInfo.dishes[index].prot} g of prot  ${FoodInfo.dishes[index].fat} g of fat ${FoodInfo.dishes[index].carb} g of carb''',
+                                  style: TextStyle(
+                                    fontSize: 8,
+                                  ),
+                                ),
+                              ]),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => AddFoodPage()),
+                                );
+                              }
                           ),
-                          Text(
-                            '''${(FoodInfo.dishes[index].cal).toString().substring(0,5)} calories ${FoodInfo.dishes[index].prot} g of prot  ${FoodInfo.dishes[index].fat} g of fat ${FoodInfo.dishes[index].carb} g of carb''',
-                            style: TextStyle(
-                              fontSize: 8,
-                            ),
-                          )
                         ],
                       ),
                     ),
