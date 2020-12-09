@@ -18,6 +18,7 @@ class DinnerState extends State<Dinner> {
 
   @override
   Widget build(BuildContext context) {
+    print('Building DinnerScreen');
     return Scaffold(
         appBar: AppBar(
           title: Text('Choose food'),
@@ -52,6 +53,8 @@ class DinnerState extends State<Dinner> {
                                 ),
                               ]),
                               onPressed: () {
+                                print('Go to AddFoodScreen from DinnerScreen');
+
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) => AddFoodPage()),

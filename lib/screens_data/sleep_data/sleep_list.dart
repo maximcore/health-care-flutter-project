@@ -21,10 +21,12 @@ class SleepList{
 
 
   static Future<void> initList() async {
+    print('Init SleepList');
     await updateList();
   }
 
   static void addSleep(Sleep sleep) {
+    print('Adding sleep to SleepList');
     if(SleepList.size < 7) {
       DatabaseSleepManager.insert(sleep);
     }
@@ -34,6 +36,7 @@ class SleepList{
   }
 
   static void printList(){
+    print('Print SleepList');
     for(int i = 0;i<sleepList.length;i++){
       print('${sleepList[i].day} ${sleepList[i].duration} ${sleepList[i].isChanged}');
     }
@@ -42,7 +45,7 @@ class SleepList{
 
 
   static Future<void> updateList() async {
-    // реализовать обновление/удаление базы данных при наступлении новой недели
+    print('Updating SleepList');
     String currentTime = DateFormat('EEEE').format(DateTime.now());
     if(_sleepList.length == 0) {
       _sleepList = await DatabaseSleepManager.downloadAll();
@@ -50,6 +53,7 @@ class SleepList{
   }
 
   static Color setColor(String duration){
+    print('Setting color');
     if(int.tryParse(duration) < 3){
       return ColorUtil.fromDartColor(Colors.red);
     }

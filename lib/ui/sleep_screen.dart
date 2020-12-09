@@ -33,6 +33,7 @@ class SleepPageState extends State<SleepPage> {
 
 
   static double averageTime() {
+    print('Counting average time of sleep');
     int res = 0;
     int counter = 0;
     for (int i = 0; i < SleepList.sleepList.length; i++) {
@@ -67,11 +68,12 @@ class SleepPageState extends State<SleepPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildDuration() {
+    print('Building duration input text form');
     var input_controller = TextEditingController();
     return TextFormField(
       controller: input_controller,
       decoration: InputDecoration(
-        hintText: 'Enter sleep duration in minutes',
+        hintText: 'Enter sleep duration in hours',
         labelText: 'Duration',
         contentPadding: EdgeInsets.only(left: 20, right: 20),
         suffixIcon: IconButton(
@@ -83,7 +85,7 @@ class SleepPageState extends State<SleepPage> {
         int duration = int.tryParse(value);
 
         if (duration == null || duration < 0) {
-          return 'Duration must be greater than 0 min';
+          return 'Duration must be greater than 0 hour';
         }
         return null;
       },
@@ -95,6 +97,7 @@ class SleepPageState extends State<SleepPage> {
 
   @override
   Widget build(BuildContext context) {
+    print('Building Sleep Screen');
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
@@ -136,6 +139,7 @@ class SleepPageState extends State<SleepPage> {
                   );
                 }).toList(),
                 onChanged: (String newValueSelected) {
+                  print('Changing day');
                   setState(() {
                     _currentItemSelected = newValueSelected;
                     day = _currentItemSelected;
@@ -154,6 +158,7 @@ class SleepPageState extends State<SleepPage> {
                   style: TextStyle(color: Colors.purple, fontSize: 16),
                 ),
                 onPressed: () {
+                  print('Adding sleep information');
                   if (!_formKey.currentState.validate())
                     return;
                   else {

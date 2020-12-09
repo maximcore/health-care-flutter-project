@@ -19,6 +19,7 @@ class SleepChart extends StatefulWidget {
 class _SleepChartState extends State<SleepChart> {
   @override
   Widget build(BuildContext context) {
+    print('Building SleepChart');
     List<charts.Series<Sleep, String>> series = [
       charts.Series(
         id: "Hours",

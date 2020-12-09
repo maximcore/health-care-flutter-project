@@ -28,6 +28,7 @@ class FoodPageState extends State<FoodPage> {
 
   @override
   Widget build(BuildContext context) {
+    print('Bulding Food Screen');
     return Scaffold(
       appBar: AppBar(
         title: Text("Food"),
@@ -105,8 +106,6 @@ class FoodPageState extends State<FoodPage> {
                           ],
                         ),
                       ),
-
-
                       BreakfastMeal(),
                       SizedBox(height: 5),
                       LunchMeal(),

@@ -50,6 +50,7 @@ class ActivityPageState extends State<ActivityPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildActivity() {
+    print('Building activity textformfield');
     return TextFormField(
       decoration: InputDecoration(
         labelText: 'Activity',
@@ -67,6 +68,7 @@ class ActivityPageState extends State<ActivityPage> {
   }
 
   Widget _buildDuration() {
+    print('Building duration textformfield');
     return TextFormField(
       key: Key('Enter duration'),
       decoration: InputDecoration(
@@ -90,8 +92,7 @@ class ActivityPageState extends State<ActivityPage> {
 
   @override
   Widget build(BuildContext context) {
-    //ActivityNotifier activityNotifier = Provider.of<ActivityNotifier>(context);
-
+    print('Building Activity Screen');
     return Scaffold(
         appBar: AppBar(
           title: Text("Activity"),
@@ -123,6 +124,7 @@ class ActivityPageState extends State<ActivityPage> {
                         );
                       }).toList(),
                       onChanged: (String newValueSelected) {
+                        print('In DropDownMenu selected new item');
                         setState(() {
                           _currentItemSelected = newValueSelected;
                           _activity = _currentItemSelected;
@@ -144,6 +146,8 @@ class ActivityPageState extends State<ActivityPage> {
                     style: TextStyle(color: Colors.deepPurpleAccent, fontSize: 16),
                   ),
                   onPressed: () {
+                    print('Adding new activity');
+
                     if (!_formKey.currentState.validate())
                       return;
                     else {

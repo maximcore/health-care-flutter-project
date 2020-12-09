@@ -13,6 +13,7 @@ class ActivityListPage extends StatefulWidget {
 class ActivityListPageState extends State<ActivityListPage> {
   @override
   Widget build(BuildContext context) {
+    print('Building ActivityList Page');
     return Scaffold(
         appBar: AppBar(
           title: Text('Activity List'),
@@ -61,6 +62,7 @@ class ActivityListPageState extends State<ActivityListPage> {
                               height: 25,
                               child: Text('Remove activity'),
                               onPressed: (){
+                                print('Removing activity from ActivityList');
                                 setState(() {
                                   //ActivityPageState.activityItems.removeAt(index);
                                   ActivityList.remove(ActivityList.activityList[index]);

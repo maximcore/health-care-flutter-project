@@ -16,6 +16,7 @@ class _DogsState extends State<Dogs> {
 
   @override
   Widget build(BuildContext context) {
+    print('Building DogList');
     return Scaffold(
         appBar: AppBar(
           title: Text('Dogs'),

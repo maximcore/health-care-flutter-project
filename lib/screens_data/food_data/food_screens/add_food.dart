@@ -39,6 +39,7 @@ class AddFoodPageState extends State<AddFoodPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildWeight() {
+    print('Building Weight TextFormField');
     var input_controller = TextEditingController();
     return TextFormField(
       controller: input_controller,
@@ -60,6 +61,7 @@ class AddFoodPageState extends State<AddFoodPage> {
         return null;
       },
       onSaved: (String value) {
+        print('Saving portion weight');
         _portion_weight = int.tryParse(value);
       },
     );
@@ -67,6 +69,7 @@ class AddFoodPageState extends State<AddFoodPage> {
 
   @override
   Widget build(BuildContext context) {
+    print('Building AddFoodScreen');
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
@@ -90,6 +93,7 @@ class AddFoodPageState extends State<AddFoodPage> {
                       style: TextStyle(fontSize: 16),
                     ),
                     onPressed: () {
+                      print('Adding food by weight');
                       if (!_formKey.currentState.validate())
                         return;
                       else {

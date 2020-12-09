@@ -49,6 +49,7 @@ class Activity {
           calories = json["calories"].toString();
 
    initCalories(){
+     print('Init calories method');
      if (activity == 'Running') {
        //return calories = 5 * int.parse(duration);
        return calories = (5*int.parse(duration)).toString();

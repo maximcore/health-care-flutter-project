@@ -12,6 +12,7 @@ class _TabsPageState extends State<TabsPage> {
 
   @override
   Widget build(BuildContext context) {
+    print('Building Tab Page');
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
@@ -20,7 +21,6 @@ class _TabsPageState extends State<TabsPage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-
         currentIndex: _currentIndex,
         onTap: (int index) => setState(()=> _currentIndex = index),
         items: [

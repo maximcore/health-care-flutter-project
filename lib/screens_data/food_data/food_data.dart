@@ -22,6 +22,7 @@ class BreakfastMeal extends StatelessWidget {
   final String _mealTime = 'Breakfast';
   @override
   Widget build(BuildContext context) {
+    print('Building BreakfastMeal');
     return new Container(
         margin: EdgeInsets.symmetric(horizontal: 10.0),
         height: MediaQuery.of(context).size.height/7,
@@ -114,6 +115,7 @@ String _mealTime = 'Lunch';
 
   @override
   Widget build(BuildContext context) {
+    print('Building LunchMeal');
     return new Container(
         margin: EdgeInsets.symmetric(horizontal: 10.0),
         height: MediaQuery.of(context).size.height/7,
@@ -205,6 +207,7 @@ class DinnerMeal extends StatelessWidget {
   final String _mealTime = 'Dinner';
   @override
   Widget build(BuildContext context) {
+    print('Building DinnerMeal');
     return new Container(
         margin: EdgeInsets.symmetric(horizontal: 10.0),
         height: MediaQuery.of(context).size.height/7,
@@ -296,6 +299,7 @@ class SnackMeal extends StatelessWidget {
   final String _mealTime = 'Snack';
   @override
   Widget build(BuildContext context) {
+    print('Building SnackMeal');
     return new Container(
         margin: EdgeInsets.symmetric(horizontal: 10.0),
         height: MediaQuery.of(context).size.height/7,
@@ -393,6 +397,7 @@ class Water_State extends State<Water> {
 
   @override
   Widget build(BuildContext context) {
+    print('Building Water Container');
     return new Container(
         margin: EdgeInsets.all(10),
         padding: EdgeInsets.all(10),
@@ -423,6 +428,7 @@ class Water_State extends State<Water> {
               //backgroundColor: Colors.deepPurpleAccent,
                 child: Icon(Icons.local_drink),
                 onPressed: () {
+                  print('Water capacity increment');
                   setState(() {
                     water_capacity += 1;
                   });

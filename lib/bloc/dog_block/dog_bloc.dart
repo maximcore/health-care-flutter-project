@@ -17,6 +17,7 @@ class DogBloc{
   Stream<int> get outputStateStream => _outputStateController.stream;
 
   void _mapEventToState(CounterEvent event){
+    print('DogBloc mapEventToState');
     if(event is IncrementEvent && _dogs < 50)
       _dogs++;
     else if(event is DecrementEvent && _dogs > 1)
@@ -27,6 +28,7 @@ class DogBloc{
   }
 
   DogBloc() {
+    print('DogBloc Listen');
     _inputEventController.stream.listen(_mapEventToState);
   }
 

@@ -22,6 +22,7 @@ class DogPageState extends State<DogPage> {
 
   @override
   void dispose() {
+    print('Dispose');
     _bloc.dispose();
   }
 
@@ -32,6 +33,7 @@ class DogPageState extends State<DogPage> {
   Map<String, dynamic> map;
 
   Future<void> getData() async {
+    print('Getting data from API');
     var response = await http.get(
         Uri.encodeFull("https://dog.ceo/api/breeds/image/random/${dog_amount}"),
         headers: {"Accept": "application/json"});
@@ -49,6 +51,9 @@ class DogPageState extends State<DogPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    print('Building Dog Screen');
+
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
     return  Scaffold(
@@ -111,6 +116,7 @@ class DogPageState extends State<DogPage> {
                                       backgroundColor: Colors.lightGreenAccent,
                                       child: Icon(Icons.add),
                                       onPressed: (){
+                                        print('Increment tapped');
                                         _bloc.inputEventSink.add(IncrementEvent());
                                       },
                                     ),
@@ -122,6 +128,7 @@ class DogPageState extends State<DogPage> {
                                       backgroundColor: Colors.redAccent,
                                       child: Icon(Icons.remove),
                                       onPressed: (){
+                                        print('Decrement tapped');
                                         _bloc.inputEventSink.add(DecrementEvent());
                                       },
                                     )

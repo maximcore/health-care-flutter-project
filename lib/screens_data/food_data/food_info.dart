@@ -12,6 +12,7 @@ class FoodInfo{
   static Map<String, dynamic> map;
 
   static Future<String> getData() async {
+    print('Geting data from Food API');
     var response = await http.get(
         Uri.encodeFull("https://raw.githubusercontent.com/maximcore/demo/master/foodlist.json"),
         headers: {"Accept": "application/json"});

@@ -5,6 +5,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:flutter/material.dart';
 import 'package:health_and_care/screens_data/activity_data/activity_list.dart';
 
+
 class DatabaseSleepManager {
   static Database _db;
 
@@ -15,6 +16,7 @@ class DatabaseSleepManager {
 
 
   static Future<void> initDB() async {
+    print('Init SleepDatabase');
     if (isInit) {
       return;
     }
@@ -33,11 +35,13 @@ class DatabaseSleepManager {
   }
 
   static void insert(Sleep sleep) {
+    print('Insert into SleepDatabase');
     _db.execute("""INSERT INTO sleep (day, duration, isChanged) VALUES (
        \"${sleep.day}\", \"${sleep.duration}\", \"${sleep.isChanged}\")""");
   }
 
   static Future<void> update(String day, String newDuration, String newStatus) async {
+    print('Update in SleepDatabase');
     await _db.update(
       "sleep",
       {columnDuration: newDuration,
@@ -50,6 +54,7 @@ class DatabaseSleepManager {
 
 
   static Future<List<Sleep>> downloadAll() async {
+    print('Download data from SleepDatabase');
     if(SleepList.size == 0 && ((await _db.rawQuery("SELECT * FROM sleep")).map((e) => Sleep.fromJson(e)).toList()).isEmpty){
       SleepList.addSleep(Sleep('Monday','0','false', ColorUtil.fromDartColor(Colors.red)));
       SleepList.addSleep(Sleep('Tuesday','0','false', ColorUtil.fromDartColor(Colors.red)));

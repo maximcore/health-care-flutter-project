@@ -11,6 +11,7 @@ class DatabaseManager {
   }
 
   static Future<void> initDB() async {
+    print('Init ActivityDatabase');
     if (isInit) {
       return;
     }
@@ -28,12 +29,14 @@ class DatabaseManager {
   }
 
   static void insert(Activity activity) {
+    print('Insert into ActivityDatabase');
     _db.execute("""INSERT INTO activity (${columnId}, ${columnActivity}, ${columnDuration}, ${columnCalories}) VALUES (
         \"${activity.id}\", \"${activity.activity}\", 
         \"${activity.duration}\", \"${activity.calories}\")""");
   }
 
   static void remove(String id) {
+    print('Remove from ActivityDatabase');
     _db.delete('activity',
       where: '$columnId = ?',
       whereArgs: ['${id}'],
@@ -41,6 +44,7 @@ class DatabaseManager {
   }
 
   static Future<List<Activity>> downloadAll() async {
+    print('Downloading data from ActivityDatabase');
     return (await _db.rawQuery("SELECT * FROM activity")).map((e) => Activity.fromJson(e)).toList();
   }
 }
