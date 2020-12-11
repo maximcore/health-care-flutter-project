@@ -33,12 +33,17 @@ class FoodInfo{
     for(int i = 0;i<dishes.length;i++){
       foodName.add(dishes[0].name);
     }
+  }
 
+  static List<String> getFoodNameList(){
+    List<String> foodNameList = [];
+    for(Dish item in dishes){
+      foodNameList.add(item.name);
+    }
+    return foodNameList;
   }
 
 }
-
-
 
 class Dish {
   String _name;

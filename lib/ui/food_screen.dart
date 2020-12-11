@@ -22,13 +22,15 @@ class FoodPageState extends State<FoodPage> {
 
   @override
   void initState() {
-   FoodInfo.getData();
+    super.initState();
+    FoodInfo.getData();
   }
+
 
 
   @override
   Widget build(BuildContext context) {
-    print('Bulding Food Screen');
+    print('Building Food Screen');
     return Scaffold(
       appBar: AppBar(
         title: Text("Food"),
@@ -60,7 +62,7 @@ class FoodPageState extends State<FoodPage> {
                                       color: Colors.grey,
                                     ),
                                   ),
-                                  Text('${FoodWork.total.prot}'),
+                                 Text('${double.tryParse('${FoodWork.allInfo().prot}').round().toInt().toString()}'),
                                 ],
                               ),
                             ),
@@ -73,7 +75,7 @@ class FoodPageState extends State<FoodPage> {
                                       color: Colors.grey,
                                     ),
                                   ),
-                                  Text('${FoodWork.total.fat}'),
+                                  Text('${double.tryParse('${FoodWork.allInfo().fat}').round().toInt().toString()}'),
                                 ],
                               ),
                             ),
@@ -86,7 +88,7 @@ class FoodPageState extends State<FoodPage> {
                                       color: Colors.grey,
                                     ),
                                   ),
-                                  Text('${FoodWork.total.carb}'),
+                                  Text('${double.tryParse('${FoodWork.allInfo().carb}').round().toInt().toString()}'),
                                 ],
                               ),
                             ),
@@ -99,7 +101,7 @@ class FoodPageState extends State<FoodPage> {
                                       color: Colors.grey,
                                     ),
                                   ),
-                                  Text('${FoodWork.total.cal}'),
+                                  Text('${double.tryParse('${FoodWork.allInfo().cal}').round().toInt().toString()}'),
                                 ],
                               ),
                             ),

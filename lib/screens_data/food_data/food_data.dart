@@ -6,23 +6,110 @@ import 'package:health_and_care/screens_data/food_data/food_screens/snack.dart';
 
 
 class FoodWork{
-  static Nutrient breakfast = Nutrient(0,0,0,0);
-  static Nutrient lunch = Nutrient(0,0,0,0);
-  static Nutrient dinner = Nutrient(0,0,0,0);
-  static Nutrient snack = Nutrient(0,0,0,0);
-  static Nutrient total = Nutrient(0,0,0,0);
 
-  static updateFoodData(){
-    total = breakfast + lunch + dinner + snack;
+
+  static List<Nutrient> breakfast = List();
+  static List<Nutrient> lunch = List();
+  static List<Nutrient> dinner = List();
+  static List<Nutrient> snack = List();
+
+  static Nutrient breakfastInfo() {
+  double prot = 0;
+  double fat = 0;
+  double carb = 0;
+  double cal = 0;
+  for(int i = 0;i< breakfast.length ;i++){
+    prot+=breakfast[i].prot;
+    fat+=breakfast[i].fat;
+    carb+=breakfast[i].carb;
+  }
+  return Nutrient(prot,fat,carb,cal);
   }
 
+  static Nutrient lunchInfo() {
+    double prot = 0;
+    double fat = 0;
+    double carb = 0;
+    double cal = 0;
+    for(int i = 0;i< lunch.length ;i++){
+      prot+=lunch[i].prot;
+      fat+=lunch[i].fat;
+      carb+=lunch[i].carb;
+    }
+    return Nutrient(prot,fat,carb,cal);
+  }
+
+  static Nutrient dinnerInfo() {
+    double prot = 0;
+    double fat = 0;
+    double carb = 0;
+    double cal = 0;
+    for(int i = 0;i< dinner.length ;i++){
+      prot+=dinner[i].prot;
+      fat+=dinner[i].fat;
+      carb+=dinner[i].carb;
+    }
+    return Nutrient(prot,fat,carb,cal);
+  }
+
+  static Nutrient snackInfo() {
+    double prot = 0;
+    double fat = 0;
+    double carb = 0;
+    double cal = 0;
+    for(int i = 0;i< snack.length ;i++){
+      prot+=snack[i].prot;
+      fat+=snack[i].fat;
+      carb+=snack[i].carb;
+    }
+    return Nutrient(prot,fat,carb,cal);
+  }
+
+  static Nutrient allInfo(){
+    double prot = 0;
+    double fat = 0;
+    double carb = 0;
+    double cal = 0;
+
+    for(int i = 0;i< breakfast.length ;i++){
+      prot+=breakfast[i].prot;
+      fat+=breakfast[i].fat;
+      carb+=breakfast[i].carb;
+    }
+
+    for(int i = 0;i< lunch.length ;i++){
+      prot+=lunch[i].prot;
+      fat+=lunch[i].fat;
+      carb+=lunch[i].carb;
+    }
+
+    for(int i = 0;i< dinner.length ;i++){
+      prot+=dinner[i].prot;
+      fat+=dinner[i].fat;
+      carb+=dinner[i].carb;
+    }
+
+    for(int i = 0;i< snack.length ;i++){
+      prot+=snack[i].prot;
+      fat+=snack[i].fat;
+      carb+=snack[i].carb;
+    }
+    return Nutrient(prot,fat,carb,cal);
+  }
 }
 
-class BreakfastMeal extends StatelessWidget {
-  final String _mealTime = 'Breakfast';
+class BreakfastMeal extends StatefulWidget {
+  @override
+  _BreakfastMealState createState() => _BreakfastMealState();
+}
+
+class _BreakfastMealState extends State<BreakfastMeal> {
+final String _mealTime = 'Breakfast';
+
   @override
   Widget build(BuildContext context) {
-    print('Building BreakfastMeal');
+
+  print('Building BreakfastMeal');
     return new Container(
         margin: EdgeInsets.symmetric(horizontal: 10.0),
         height: MediaQuery.of(context).size.height/7,
@@ -67,7 +154,7 @@ class BreakfastMeal extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        '${FoodWork.breakfast.cal}',
+                      '${double.tryParse('${FoodWork.breakfastInfo().cal}').round().toInt().toString()}',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20.0,
@@ -84,7 +171,7 @@ class BreakfastMeal extends StatelessWidget {
                   margin: EdgeInsets.only(left: 60),
                   child: Column(
                     children: [
-                      Text('${FoodWork.breakfast.prot}'),
+                      Text('${double.tryParse('${FoodWork.breakfastInfo().prot}').round().toInt().toString()}'),
                     ],
                   ),
                 ),
@@ -92,15 +179,13 @@ class BreakfastMeal extends StatelessWidget {
                     margin: EdgeInsets.only(left: 60),
                     child: Column(
                       children: [
-                        Text('${FoodWork.breakfast.fat}'),
-                      ],
+                        Text('${double.tryParse('${FoodWork.breakfastInfo().fat}').round().toInt().toString()}')                      ],
                     )),
                 Container(
                   margin: EdgeInsets.only(left: 60),
                   child: Column(
                     children: [
-                      Text('${FoodWork.breakfast.carb}'),
-                    ],
+                      Text('${double.tryParse('${FoodWork.breakfastInfo().carb}').round().toInt().toString()}')                    ],
                   ),
                 ),
               ],
@@ -110,7 +195,12 @@ class BreakfastMeal extends StatelessWidget {
   }
 }
 
-class LunchMeal extends StatelessWidget {
+class LunchMeal extends StatefulWidget {
+  @override
+  _LunchMealState createState() => _LunchMealState();
+}
+
+class _LunchMealState extends State<LunchMeal> {
 String _mealTime = 'Lunch';
 
   @override
@@ -160,7 +250,7 @@ String _mealTime = 'Lunch';
                   child: Column(
                     children: [
                       Text(
-                        '${FoodWork.lunch.cal}',
+                        '${double.tryParse('${FoodWork.lunchInfo().cal}').round().toInt().toString()}',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20.0,
@@ -177,7 +267,8 @@ String _mealTime = 'Lunch';
                   margin: EdgeInsets.only(left: 60),
                   child: Column(
                     children: [
-                      Text('${FoodWork.lunch.prot}'),
+                      Text('${double.tryParse('${FoodWork.lunchInfo().prot}').round().toInt().toString()}',
+                      ),
                     ],
                   ),
                 ),
@@ -185,14 +276,16 @@ String _mealTime = 'Lunch';
                     margin: EdgeInsets.only(left: 60),
                     child: Column(
                       children: [
-                        Text('${FoodWork.lunch.fat}'),
+                        Text('${double.tryParse('${FoodWork.lunchInfo().fat}').round().toInt().toString()}',
+                        ),
                       ],
                     )),
                 Container(
                   margin: EdgeInsets.only(left: 60),
                   child: Column(
                     children: [
-                      Text('${FoodWork.lunch.carb}'),
+          Text('${double.tryParse('${FoodWork.lunchInfo().carb}').round().toInt().toString()}',
+          ),
                     ],
                   ),
                 ),
@@ -203,8 +296,14 @@ String _mealTime = 'Lunch';
   }
 }
 
-class DinnerMeal extends StatelessWidget {
+class DinnerMeal extends StatefulWidget {
+  @override
+  _DinnerMealState createState() => _DinnerMealState();
+}
+
+class _DinnerMealState extends State<DinnerMeal> {
   final String _mealTime = 'Dinner';
+
   @override
   Widget build(BuildContext context) {
     print('Building DinnerMeal');
@@ -252,7 +351,7 @@ class DinnerMeal extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        '${FoodWork.dinner.cal}',
+                      '${double.tryParse('${FoodWork.dinnerInfo().cal}').round().toInt().toString()}',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20.0,
@@ -269,7 +368,7 @@ class DinnerMeal extends StatelessWidget {
                   margin: EdgeInsets.only(left: 60),
                   child: Column(
                     children: [
-                      Text('${FoodWork.dinner.prot}'),
+                      Text('${double.tryParse('${FoodWork.dinnerInfo().prot}').round().toInt().toString()}'),
                     ],
                   ),
                 ),
@@ -277,14 +376,15 @@ class DinnerMeal extends StatelessWidget {
                     margin: EdgeInsets.only(left: 60),
                     child: Column(
                       children: [
-                        Text('${FoodWork.dinner.fat}'),
+                        Text('${double.tryParse('${FoodWork.dinnerInfo().fat}').round().toInt().toString()}'),
                       ],
                     )),
                 Container(
                   margin: EdgeInsets.only(left: 60),
                   child: Column(
                     children: [
-                      Text('${FoodWork.dinner.carb}'),
+                      Text('${double.tryParse('${FoodWork.dinnerInfo().carb}').round().toInt().toString()}',
+                      ),
                     ],
                   ),
                 ),
@@ -295,8 +395,14 @@ class DinnerMeal extends StatelessWidget {
   }
 }
 
-class SnackMeal extends StatelessWidget {
+class SnackMeal extends StatefulWidget {
+  @override
+  _SnackMealState createState() => _SnackMealState();
+}
+
+class _SnackMealState extends State<SnackMeal> {
   final String _mealTime = 'Snack';
+
   @override
   Widget build(BuildContext context) {
     print('Building SnackMeal');
@@ -344,7 +450,7 @@ class SnackMeal extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        '${FoodWork.snack.cal}',
+                        '${double.tryParse('${FoodWork.snackInfo().cal}').round().toInt().toString()}',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20.0,
@@ -361,7 +467,7 @@ class SnackMeal extends StatelessWidget {
                   margin: EdgeInsets.only(left: 60),
                   child: Column(
                     children: [
-                      Text('${FoodWork.snack.prot}'),
+                      Text('${double.tryParse('${FoodWork.snackInfo().prot}').round().toInt().toString()}'),
                     ],
                   ),
                 ),
@@ -369,14 +475,14 @@ class SnackMeal extends StatelessWidget {
                     margin: EdgeInsets.only(left: 60),
                     child: Column(
                       children: [
-                        Text('${FoodWork.snack.fat}'),
+                        Text('${double.tryParse('${FoodWork.snackInfo().fat}').round().toInt().toString()}'),
                       ],
                     )),
                 Container(
                   margin: EdgeInsets.only(left: 60),
                   child: Column(
                     children: [
-                      Text('${FoodWork.snack.carb}'),
+                      Text('${double.tryParse('${FoodWork.snackInfo().carb}').round().toInt().toString()}'),
                     ],
                   ),
                 ),

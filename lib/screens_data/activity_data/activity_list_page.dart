@@ -64,7 +64,6 @@ class ActivityListPageState extends State<ActivityListPage> {
                               onPressed: (){
                                 print('Removing activity from ActivityList');
                                 setState(() {
-                                  //ActivityPageState.activityItems.removeAt(index);
                                   ActivityList.remove(ActivityList.activityList[index]);
                                 });
                                 print(ActivityList.activityList);

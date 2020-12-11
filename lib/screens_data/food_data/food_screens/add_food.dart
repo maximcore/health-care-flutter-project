@@ -70,6 +70,7 @@ class AddFoodPageState extends State<AddFoodPage> {
   @override
   Widget build(BuildContext context) {
     print('Building AddFoodScreen');
+
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
